@@ -7,20 +7,20 @@ from flask_api import FlaskAPI, status, exceptions
 from flask_sqlalchemy import SQLAlchemy
 
 from config import Config
+from models import db, Jobs, JobResults
 
 app = FlaskAPI(__name__)
 app.config.from_object(Config)
-db = SQLAlchemy(app)
-
-from models import Jobs, JobResults
+db.init_app(app)
 
 
 @app.route("/", methods=["GET"])
-def hello_world():
+def get_job_by_key_phrase():
     """
-    Temp hello world
+    Returns job details by provided key_phrase
     """
-    return "Hello World"
+    current_job = Jobs.query.filter_by(key_phrase='test_phrase').first()
+    return str(current_job.creation_timestamp)
 
 
 if __name__ == "__main__":

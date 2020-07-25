@@ -5,7 +5,8 @@ TODO move this.
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
-from app import app, db
+from app import app
+from models import db
 from config import Config
 
 

@@ -2,10 +2,12 @@
 Tables in the key_phrase db
 """
 from datetime import datetime
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 
-from app import db
+db = SQLAlchemy()
 
 
 class Jobs(db.Model):
@@ -13,7 +15,7 @@ class Jobs(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     key_phrase = db.Column(db.String(1000))
-    creation_timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    creation_timestamp = db.Column(db.DateTime, server_default=func.now())
     last_run_timestamp = db.Column(db.DateTime, nullable=True)
     single_run_only = db.Column(db.Boolean)
     job_results = relationship("JobResults", back_populates="job")
