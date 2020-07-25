@@ -1,0 +1,14 @@
+{
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [
+        "--select=B,BLK,C,E,F,I,S,W",
+        "--max-line-length=88",
+        "--ignore=E203,E501,W503",
+        "--import-order-style=google",
+    ],
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [],
+    "python.linting.lintOnSave": true,
+    "python.linting.pylintUseMinimalCheckers": false
+}
